@@ -1,4 +1,8 @@
 import requests
+import hashlib
+
+url = 'https://api.codenation.dev/v1/challenge/dev-ps/generate-data'
+my_token = '4646090ebb3fd4037ecb08134825732b36e73e84'
 
 def decrypt(encrypted, shift_size):
     decrypted = ''
@@ -19,17 +23,14 @@ def decrypt(encrypted, shift_size):
 
     return decrypted
 
-url = 'https://api.codenation.dev/v1/challenge/dev-ps/generate-data'
-my_token = '4646090ebb3fd4037ecb08134825732b36e73e84'
-
 response = requests.get(url, params={'token': my_token})
 json_response = response.json()
 
 json_response['decifrado'] = decrypt(json_response['cifrado'], json_response['numero_casas'])
+json_response['resumo_criptografico'] = hashlib.sha1(json_response['decifrado'].encode()).hexdigest()
+
 print(json_response['numero_casas'])
 print(json_response['token'])
 print(json_response['cifrado'])
 print(json_response['decifrado'])
 print(json_response['resumo_criptografico'])
-
-
