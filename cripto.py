@@ -4,7 +4,7 @@ import json
 
 url = 'https://api.codenation.dev/v1/challenge/dev-ps/generate-data'
 url_submit = 'https://api.codenation.dev/v1/challenge/dev-ps/submit-solution'
-my_token = '4646090ebb3fd4037ecb08134825732b36e73e84'
+my_token = 'token'
 
 def decrypt(encrypted, shift_size):
     decrypted = ''
